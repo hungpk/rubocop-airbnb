@@ -4,6 +4,8 @@ require 'psych'
 Dir.glob(File.expand_path('cop/**/*.rb', File.dirname(__FILE__))).map(&method(:require))
 
 module RuboCop
+  module Cop
+  end
   # RuboCop Airbnb project namespace
   module Airbnb
     PROJECT_ROOT =

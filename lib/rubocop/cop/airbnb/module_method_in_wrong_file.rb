@@ -64,10 +64,10 @@ module RuboCop
         include RailsAutoloading
 
         MSG_TEMPLATE =
-          "In order for Rails autoloading to be able to find and load this file when " \
-          "someone calls this method, move the method definition to a file that defines " \
-          "the module. This file just uses the module as a namespace for another class " \
-          "or module. Method %s should be defined in %s.".freeze
+          'In order for Rails autoloading to be able to find and load this file when ' \
+          'someone calls this method, move the method definition to a file that defines ' \
+          'the module. This file just uses the module as a namespace for another class ' \
+          'or module. Method %s should be defined in %s.'.freeze
 
         def on_def(node)
           method_name, args, body = *node
@@ -78,23 +78,23 @@ module RuboCop
 
         private
 
-        def on_method_def(node, method_name, args, body)
+        def on_method_def(node, method_name, _args, _body)
           path = node.source_range.source_buffer.name
           return unless run_rails_autoloading_cops?(path)
           return unless node.parent_module_name
           # "#<Class:>" is the parent module name of a method being defined in an if/unless.
-          return if node.parent_module_name == "#<Class:>"
+          return if node.parent_module_name == '#<Class:>'
 
           expected_dir = underscore(normalize_module_name(node.parent_module_name))
-          allowable_filenames = expected_dir.split("/").map { |file| "#{file}.rb" }
+          allowable_filenames = expected_dir.split('/').map { |file| "#{file}.rb" }
           basename = File.basename(path)
-          if !allowable_filenames.include?(basename)
+          unless allowable_filenames.include?(basename)
             parent_module_names = split_modules(node.parent_module_name)
             expected_parent_module_file =
-              "#{parent_module_names.map { |name| underscore(name) }.join("/")}.rb"
+              "#{parent_module_names.map { |name| underscore(name) }.join('/')}.rb"
             add_offense(
               node,
-              message: MSG_TEMPLATE % [method_name, expected_parent_module_file]
+              message: format(MSG_TEMPLATE, method_name, expected_parent_module_file)
             )
           end
         end

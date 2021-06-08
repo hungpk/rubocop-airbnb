@@ -84,12 +84,6 @@ Airbnb/SimpleUnless:
   Enabled: true
   StyleGuide: https://github.com/airbnb/ruby#unless-with-multiple-conditions
 
-Airbnb/SpecConstantAssignment:
-  Description: Constant assignment in specs polute global namespace and are a cause of spurious
-    specs. They should be avoided. Also modifing existing constants is bad too, use stub_const
-    instead
-  Enabled: true
-
 Airbnb/UnsafeYamlMarshal:
   Description: Avoid use of YAML/Marshal methods that can trigger RCE on untrusted input.
   Enabled: true

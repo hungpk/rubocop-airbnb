@@ -1,5 +1,5 @@
 Rails:
-  Enabled: true
+  Enabled: false
 
 ##############
 # Global rules
@@ -15,14 +15,6 @@ AllCops:
     - 'vendor/**/*'
     - Vagrantfile
     - Guardfile
-  RSpec:
-    Patterns:
-    - _spec.rb
-    - "(?:^|/)spec/"
-  RSpec/FactoryBot:
-    Patterns:
-    - spec/factories/**/*.rb
-    - features/support/factories/**/*.rb
 
 inherit_from:
   - './rubocop-airbnb.yml'
