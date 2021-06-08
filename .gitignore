@@ -26,3 +26,4 @@ TAGS
 /rubocop-airbnb/log/*.log
 /rubocop-airbnb/tmp
 .byebug_history
+.vscode
